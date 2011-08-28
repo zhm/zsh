@@ -4,8 +4,8 @@ This is my iTerm2 / zsh config. Included is my .zshrc, my iTerm2 preferences, an
 
 Inspired by
 -----------
-(http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt)
-(http://forrst.com/posts/Oh_my_zsh_iTerm2_Nice_Colors_git_hg_suppo-1Ct)
+* [My Extravagant Zsh Prompt](http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt)
+* [Oh my zsh! + iTerm2 + Nice Colors + git/hg support === amazazing](http://forrst.com/posts/Oh_my_zsh_iTerm2_Nice_Colors_git_hg_suppo-1Ct)
 
 Screenshot
 ----------
