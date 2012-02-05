@@ -1,0 +1,137 @@
+
+function remove-ext() {
+  echo "$1" | sed "s/\([^.*]\)\.\(.*\)*$/\1/g"
+}
+
+function search() {
+  find . -type f \( ! -path "*/.git/*" \) -exec grep -l "$1" {} \;
+}
+
+function searchf() {
+  find . -type f -name "*$1*" \( ! -path "*/.git/*" \)
+}
+
+function tab2csv() {
+  tr '\t' ',' < $1 > $2
+}
+
+function csv2tab() {
+  tr ',' '\t' < $1 > $2
+}
+
+function prettyjson() {
+  pbpaste | jsonlint | node $DEV_PATH/ii/bin/ii.js | less -R
+}
+
+function gstats() {
+  git log --format='%aN' | sort -u | 
+  while read line ; do 
+    printf "%-20s" $line; 
+    git log --author=$line --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf " \033[36m+%-8s\033[m\033[31m -%-8s\033[m = \033[32m%-8s\033[m\n",add,subs,loc }' - \
+  ; done
+}
+
+
+# Usage: atosym appname 0x000ac2d4
+function atosym() {
+  atos -arch armv7 -o '$1.app'/'$1' 0x000ac2d4
+}
+
+
+function genant() {
+  android update project -p . -n $1
+  #/opt/android-sdk/tools/android update lib-project -p dependencies/GreenDroid --target 1
+  #patch -i ../AI.build.xml.patch
+  mkdir -p ./libs
+  mv ./lib/* ./libs/
+}
+
+function genantlib() {
+  android update lib-project -p dependencies/$1 --target 1
+  mkdir -p ./libs
+  mv ./lib/* ./libs/
+}
+
+
+function geminfo() {
+  gem query -r -d -n \^$1$
+}
+
+function xmake() {
+  find `pwd` -iname "*.xcodeproj" -exec xcodebuild -project "{}" $@ \;
+}
+
+function killnamed () { 
+    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill 
+}
+
+function zipr() {
+  zip -r $1.zip $1
+}
+
+
+
+
+
+# GIS-related functions
+
+function tospatialite() {
+  ogr2ogr -f SQLite `remove-ext $1`.sqlite $1 -dsco SPATIALITE=YES
+}
+
+function togeojson() {
+  ogr2ogr -f GeoJSON `remove-ext $1`.json $1
+}
+
+function toshp() {
+  ogr2ogr -f "ESRI Shapefile" `remove-ext $1`.shp $1
+}
+
+function topostgis() {
+  ogr2ogr -skipfailures -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $3
+}
+
+function topostgis2() {
+  ogr2ogr -skipfailures -nln $3 -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $4
+}
+
+function topostgis3() {
+  ogr2ogr -skipfailures -nln $3 -t_srs "EPSG:4326" -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $4
+}
+
+function topostgisdbg() {
+  ogr2ogr --debug on -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $3
+}
+
+function projectshp() {
+  ogr2ogr -skipfailures -f "ESRI Shapefile" -t_srs "$4" -s_srs "$3" $2 $1
+}
+
+function creategisdbt() {
+  createdb --username=postgres -T template_postgis $1
+}
+
+function creategisdb() {
+  createdb --username=postgres $1
+  createlang --username=postgres plpgsql $1
+  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis.sql
+  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/spatial_ref_sys.sql
+  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis_comments.sql
+}
+
+function imposmimportdb() {
+  creategisdb $2
+  imposm --read --write --optimize --overwrite-cache --user=postgres -d $2 $1
+  imposm -d $2 --user=postgres --deploy-production-tables
+  growlnotify -t "Imposm import" -m "Imposm import finished."
+}
+
+function imposmimport() {
+  imposm --read --write --optimize --overwrite-cache --user=postgres -d osm $1
+  imposm -d osm --user=postgres --deploy-production-tables
+}
+
+function osm2sql() {
+  osm2pgsql --database=$2 --username=postgres --password $1
+}
+
