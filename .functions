@@ -34,7 +34,7 @@ function gstats() {
 
 # Usage: atosym appname 0x000ac2d4
 function atosym() {
-  atos -arch armv7 -o '$1.app'/'$1' 0x000ac2d4
+  atos -arch armv7 -o "$1.app"/"$1" $2
 }
 
 
@@ -135,3 +135,7 @@ function osm2sql() {
   osm2pgsql --database=$2 --username=postgres --password $1
 }
 
+function extractosm() {
+  # extractosm england.osm.bz2 /Users/zacmcc/data/london.osm.bz2 51.984 -1.115 50.941 0.895
+  bunzip2 -c $1 | ~/local/osmosis-*/bin/osmosis --rx file=- --bb top=$3 left=$4 bottom=$5 right=$6 --wx file=$2
+}

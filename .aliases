@@ -10,6 +10,7 @@ alias gb='git branch -a'
 alias ga='git add --all'
 alias gr='git remote show origin'
 alias gdiff='git diff'
+alias gdiffc='git diff --cached'
 alias gsmp='git submodule foreach git pull origin master'
 alias gsmi='git submodule init && git submodule update'
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %C(cyan)(%cr) %C(blue)<%an>%Creset" --abbrev-commit --date=relative'
@@ -40,4 +41,4 @@ alias tarf='tar --exclude "$(basename $(pwd)).tar.gz" -czf "$(basename $(pwd)).t
 alias lss='ls -lA'
 alias k9='killall -9'
 alias o='open . &' #Finder
-
+alias todo='node ~/dev/todo/bin/todo'

@@ -1,9 +1,10 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="zacmcc"
 
-export PATH=$PATH:/Library/Frameworks/GDAL.framework/Programs
+export PATH=/Library/PostgreSQL/9.0/bin:$PATH
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:~/android/android-sdk-macosx/tools
+export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH
 export MDBDRIVER_PATH=/usr/local/lib/libmdbodbc
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
