@@ -42,3 +42,4 @@ alias lss='ls -lA'
 alias k9='killall -9'
 alias o='open . &' #Finder
 alias todo='node ~/dev/todo/bin/todo'
+alias adb='$ANDROID_SDK_PATH/platform-tools/adb'

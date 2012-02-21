@@ -12,6 +12,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 export DROPBOX_PATH=/Users/zacmcc/Dropbox
 export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
+export ANDROID_SDK_PATH=~/android/android-sdk-macosx
 
 plugins=(git ruby rails osx)
 

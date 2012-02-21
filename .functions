@@ -52,6 +52,29 @@ function genantlib() {
   mv ./lib/* ./libs/
 }
 
+function ademu() {
+  emulator -avd AVD_Level_8_Google -no-boot-anim -scale 1 -show-kernel
+}
+
+function adshell() {
+  adb -s emulator-5554 shell
+}
+
+function adlog() {
+  adb logcat $@
+}
+
+function adlogw() {
+  adb logcat "*:W" $@
+}
+
+function adloge() {
+  adb logcat "*:E" $@
+}
+
+function adlogf() {
+  adb logcat "*:F" $@
+}
 
 function geminfo() {
   gem query -r -d -n \^$1$
@@ -138,4 +161,5 @@ function osm2sql() {
 function extractosm() {
   # extractosm england.osm.bz2 /Users/zacmcc/data/london.osm.bz2 51.984 -1.115 50.941 0.895
   bunzip2 -c $1 | ~/local/osmosis-*/bin/osmosis --rx file=- --bb top=$3 left=$4 bottom=$5 right=$6 --wx file=$2
+  growlnotify -t "Osmosis" -m "Osmosis extract finished."
 }
