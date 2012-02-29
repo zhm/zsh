@@ -11,6 +11,10 @@ function searchf() {
   find . -type f -name "*$1*" \( ! -path "*/.git/*" \)
 }
 
+function searchp() {
+  find . -type f \( ! -path "*/.git/*" ! -iname "*.dex" ! -iname "*.class" ! -iname "*.jar" \) -exec ack -H --nobinary "$1" {} \;
+}
+
 function tab2csv() {
   tr '\t' ',' < $1 > $2
 }
