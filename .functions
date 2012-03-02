@@ -23,6 +23,10 @@ function csv2tab() {
   tr ',' '\t' < $1 > $2
 }
 
+function bman {
+  man "${1}" | man2html | browser
+}
+
 function prettyjson() {
   pbpaste | jsonlint | node $DEV_PATH/ii/bin/ii.js | less -R
 }
@@ -115,19 +119,19 @@ function toshp() {
 }
 
 function topostgis() {
-  ogr2ogr -skipfailures -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $3
+  ogr2ogr -skipfailures -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432'" $1 $3
 }
 
 function topostgis2() {
-  ogr2ogr -skipfailures -nln $3 -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $4
+  ogr2ogr -skipfailures -nln $3 -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432'" $1 $4
 }
 
 function topostgis3() {
-  ogr2ogr -skipfailures -nln $3 -t_srs "EPSG:4326" -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $4
+  ogr2ogr -skipfailures -nln $3 -t_srs "EPSG:4326" -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432'" $1 $4
 }
 
 function topostgisdbg() {
-  ogr2ogr --debug on -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432' user='postgres' password='postgres'" $1 $3
+  ogr2ogr --debug on -f "PostgreSQL" PG:"dbname='$2' host='localhost' port='5432'" $1 $3
 }
 
 function projectshp() {
@@ -135,35 +139,39 @@ function projectshp() {
 }
 
 function creategisdbt() {
-  createdb --username=postgres -T template_postgis $1
+  createdb -T template_postgis $1
 }
 
 function creategisdb() {
-  createdb --username=postgres $1
-  createlang --username=postgres plpgsql $1
-  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis.sql
-  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/spatial_ref_sys.sql
-  psql --username=postgres -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis_comments.sql
+  createdb $1
+  createlang plpgsql $1
+  psql -d $1 -f /usr/local/share/postgis/postgis.sql
+  psql -d $1 -f /usr/local/share/postgis/spatial_ref_sys.sql
+  psql -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis_comments.sql
 }
 
 function imposmimportdb() {
   creategisdb $2
-  imposm --read --write --optimize --overwrite-cache --user=postgres -d $2 $1
-  imposm -d $2 --user=postgres --deploy-production-tables
+  imposm --read --write --optimize --overwrite-cache -d $2 $1
+  imposm -d $2 --deploy-production-tables
   growlnotify -t "Imposm import" -m "Imposm import finished."
 }
 
 function imposmimport() {
-  imposm --read --write --optimize --overwrite-cache --user=postgres -d osm $1
-  imposm -d osm --user=postgres --deploy-production-tables
+  imposm --read --write --optimize --overwrite-cache -d osm $1
+  imposm -d osm --deploy-production-tables
 }
 
 function osm2sql() {
-  osm2pgsql --database=$2 --username=postgres --password $1
+  osm2pgsql --database=$2 $1
 }
 
 function extractosm() {
   # extractosm england.osm.bz2 /Users/zacmcc/data/london.osm.bz2 51.984 -1.115 50.941 0.895
   bunzip2 -c $1 | ~/local/osmosis-*/bin/osmosis --rx file=- --bb top=$3 left=$4 bottom=$5 right=$6 --wx file=$2
   growlnotify -t "Osmosis" -m "Osmosis extract finished."
+}
+
+function backupdb() {
+  pg_dump $1 | gzip > ~/Documents/postgres_backups/$1.gz
 }

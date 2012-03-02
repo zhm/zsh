@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="zacmcc"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/Library/PostgreSQL/9.0/bin:$PATH
+export PATH=/usr/local/share/python:$PATH
 export PATH=$PATH:~/android/android-sdk-macosx/tools
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
