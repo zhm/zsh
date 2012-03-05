@@ -11,8 +11,16 @@ function searchf() {
   find . -type f -name "*$1*" \( ! -path "*/.git/*" \)
 }
 
+function searchd() {
+  find . -type d -name "*$1*" \( ! -path "*/.git/*" \)
+}
+
 function searchp() {
   find . -type f \( ! -path "*/.git/*" ! -iname "*.dex" ! -iname "*.class" ! -iname "*.jar" \) -exec ack -H --nobinary "$1" {} \;
+}
+
+function his() {
+  history | ack $@
 }
 
 function tab2csv() {
@@ -100,7 +108,21 @@ function zipr() {
   zip -r $1.zip $1
 }
 
+function serve {
+  port="${1:-3000}"
+  ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+}
 
+function unlocal {
+  username=`whoami`
+  export PATH=`echo $PATH | sed -e "s/\/Users\/\$username\/local://"`
+}
+
+function addlocal {
+  unlocal
+  username=`whoami`
+  export PATH="/Users/$username/local:$PATH"
+}
 
 
 

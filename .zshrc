@@ -1,8 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="zacmcc"
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/usr/local/share/python:$PATH
+export PATH=~/local:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH
 export PATH=$PATH:~/android/android-sdk-macosx/tools
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
@@ -11,6 +10,7 @@ export DROPBOX_PATH=/Users/zacmcc/Dropbox
 export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
 export ANDROID_SDK_PATH=~/android/android-sdk-macosx
+export CLASSPATH=~/local/jar
 
 plugins=(git ruby rails osx)
 
