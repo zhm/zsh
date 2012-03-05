@@ -115,13 +115,13 @@ function serve {
 
 function unlocal {
   username=`whoami`
-  export PATH=`echo $PATH | sed -e "s/\/Users\/\$username\/local://"`
+  export PATH=`echo $PATH | sed -e "s/\/Users\/\$username\/local/bin://"`
 }
 
 function addlocal {
   unlocal
   username=`whoami`
-  export PATH="/Users/$username/local:$PATH"
+  export PATH="/Users/$username/local/bin:$PATH"
 }
 
 
