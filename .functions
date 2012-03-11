@@ -213,3 +213,9 @@ function backupdb() {
 function restoredb() {
   gunzip -c $1 | psql $2
 }
+
+# getlayers filename | xargs -I {} ogr2ogr -f "GeoJSON" output/'{}'.json filename '{}'
+function getlayers() {
+  ogrinfo $@ | tail +3 | sed 's/[0-9]*: //' | sed 's/ (.*//'
+}
+
