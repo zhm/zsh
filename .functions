@@ -177,6 +177,13 @@ function creategisdb() {
   psql -d $1 -f $DROPBOX_PATH/stuff/postgis/postgis_comments.sql
 }
 
+function creategisdb2() {
+  createdb $1
+  createlang plpgsql $1
+  psql -d $1 -f $HOME/local/share/postgresql/contrib/postgis-2.0/postgis.sql
+  psql -d $1 -f $HOME/local/share/postgresql/contrib/postgis-2.0/spatial_ref_sys.sql
+}
+
 function imposmimportdb() {
   creategisdb $2
   imposm --read --write --optimize --overwrite-cache -d $2 $1
