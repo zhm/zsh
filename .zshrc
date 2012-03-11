@@ -1,7 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="zacmcc"
 
-export PATH=~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH
+export PATH=~/local/geotools/bin:~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH
 export PATH=$PATH:~/android/android-sdk-macosx/tools
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
