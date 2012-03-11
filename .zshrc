@@ -18,6 +18,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.functions
 source ~/.aliases
 source ~/.rvm/scripts/rvm
+rvm use 1.9.2
 
 export HISTSIZE=100000000
 export SAVEHIST=100000000
