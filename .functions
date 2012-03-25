@@ -100,8 +100,8 @@ function xmake() {
   find `pwd` -iname "*.xcodeproj" -exec xcodebuild -project "{}" $@ \;
 }
 
-function killnamed () { 
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill 
+function killnamed () {
+    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
 }
 
 function zipr() {
@@ -122,6 +122,21 @@ function addlocal {
   unlocal
   username=`whoami`
   export PATH="/Users/$username/local/bin:$PATH"
+}
+
+function unlocalruby {
+  username=`whoami`
+  export PATH=`echo $PATH | sed -e "s/\/Users\/\$username\/local\/ruby\/bin://"`
+}
+
+function localruby {
+  unlocalruby
+  username=`whoami`
+  export PATH="/Users/$username/local/ruby/bin:$PATH"
+}
+
+function createtags {
+  ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.tags/$1 $2
 }
 
 
