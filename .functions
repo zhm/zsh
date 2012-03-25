@@ -1,4 +1,12 @@
 
+function git() {
+  hub "$@"
+}
+
+function churn() {
+  git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count\tfile"} {print $1 "\t" $2}' | sort -g
+}
+
 function remove-ext() {
   echo "$1" | sed "s/\([^.*]\)\.\(.*\)*$/\1/g"
 }
@@ -40,13 +48,12 @@ function prettyjson() {
 }
 
 function gstats() {
-  git log --format='%aN' | sort -u | 
-  while read line ; do 
-    printf "%-20s" $line; 
+  git log --format='%aN' | sort -u |
+  while read line ; do
+    printf "%-20s" $line;
     git log --author=$line --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf " \033[36m+%-8s\033[m\033[31m -%-8s\033[m = \033[32m%-8s\033[m\n",add,subs,loc }' - \
   ; done
 }
-
 
 # Usage: atosym appname 0x000ac2d4
 function atosym() {
