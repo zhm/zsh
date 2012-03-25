@@ -22,3 +22,7 @@ source ~/.aliases
 export HISTSIZE=100000000
 export SAVEHIST=100000000
 export CLICOLOR=1
+
+# ctrl+n/p delete all-up-to and delete-all-after cursor
+bindkey "^N" backward-kill-line
+bindkey "^P" kill-line
