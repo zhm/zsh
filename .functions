@@ -131,6 +131,29 @@ function addlocal {
   export PATH="/Users/$username/local/bin:$PATH"
 }
 
+function prepend-path {
+  remove-path $1
+  export PATH=$1:$PATH
+}
+
+function append-path {
+  remove-path $1
+  export PATH=$PATH:$1
+}
+
+# clean up the $PATH and remove the specified path
+function remove-path {
+  cleanpath=$(echo $PATH |
+              tr ':' '\n' |
+              awk '{a[$0]++;if (a[$0]==1){b[max+1]=$0;max++}}END{for (x = 1; x <= max; x++) { print b[x] } }' |
+              grep -v $1 |
+              tr '\n' ':' |
+              sed -e 's/:$//')
+
+  export PATH=$cleanpath
+}
+
+
 function unlocalruby {
   username=`whoami`
   export PATH=`echo $PATH | sed -e "s/\/Users\/\$username\/local\/ruby\/bin://"`

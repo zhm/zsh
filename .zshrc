@@ -4,20 +4,26 @@ ZSH_THEME="zacmcc"
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
 export NODE_PATH=/usr/local/lib/node_modules
-export DROPBOX_PATH=/Users/zacmcc/Dropbox
+export DROPBOX_PATH=$HOME/Dropbox
 export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
 export ANDROID_SDK_PATH=~/android/android-sdk-macosx
-export CLASSPATH=~/local/jar
+export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
-export PATH=$RY_PREFIX/lib/ry/current/bin:~/local/geotools/bin:~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH
-export PATH=$PATH:~/android/android-sdk-macosx/tools
 
 plugins=(git ruby rails osx)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.functions
 source ~/.aliases
+
+prepend-path "/usr/local/share/python"
+prepend-path "/usr/local/sbin"
+prepend-path "/usr/local/bin"
+prepend-path "$HOME/local/bin"
+prepend-path "$HOME/local/geotools/bin"
+prepend-path "$RY_PREFIX/lib/ry/current/bin"
+append-path  "$HOME/android/android-sdk-macosx/tools"
 
 export HISTSIZE=100000000
 export SAVEHIST=100000000
