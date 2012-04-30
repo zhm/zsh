@@ -47,6 +47,10 @@ function prettyjson() {
   pbpaste | jsonlint | node $DEV_PATH/ii/bin/ii.js | less -R
 }
 
+function pjson() {
+  jsonlint | node $DEV_PATH/ii/bin/ii.js | less -R
+}
+
 function gstats() {
   git log --format='%aN' | sort -u |
   while read line ; do

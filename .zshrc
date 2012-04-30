@@ -10,6 +10,8 @@ export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
 export ANDROID_SDK_PATH=~/android/android-sdk-macosx
 export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
+export JRUBY_HOME=$RY_PREFIX/lib/ry/current/src
+export JAVA_OPTS="-d32"
 
 plugins=(git ruby rails osx)
 
