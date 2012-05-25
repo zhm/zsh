@@ -231,6 +231,7 @@ function creategisdb2() {
   createlang plpgsql $1
   psql -d $1 -f $HOME/local/share/postgresql/contrib/postgis-2.0/postgis.sql
   psql -d $1 -f $HOME/local/share/postgresql/contrib/postgis-2.0/spatial_ref_sys.sql
+  psql -d $1 -f $HOME/local/share/postgresql/extension/hstore--1.0.sql
 }
 
 function imposmimportdb() {
@@ -268,3 +269,19 @@ function getlayers() {
   ogrinfo $@ | tail +3 | sed 's/[0-9]*: //' | sed 's/ (.*//'
 }
 
+function sayloud() {
+  MAXVOLUME=7 && CURVOLUME=$(echo "($(osascript -e 'set curVolume to output volume of (get volume settings)') / 100.0) * $MAXVOLUME" | bc -l)
+  osascript -e "set volume $MAXVOLUME" && say "$@" && osascript -e "set volume $CURVOLUME"
+}
+
+function ai-rs() {
+  export RUBY_HEAP_MIN_SLOTS=1000000
+  export RUBY_HEAP_SLOTS_INCREMENT=500000
+  export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+  export RUBY_GC_MALLOC_LIMIT=50000000
+  rs
+}
+
+function pdbackup() {
+  rm $@ && mplayer -msglevel all=-1 "/System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/finder/empty trash.aif"
+}
