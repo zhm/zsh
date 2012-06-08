@@ -44,6 +44,7 @@ alias less='less -R' #color output
 alias alldirs='tree -C -d'
 alias tarf='tar --exclude "$(basename $(pwd)).tar.gz" -czf "$(basename $(pwd)).tar.gz" .'
 alias lss='ls -lA'
+alias ls='ls -lA'
 alias k9='killall -9'
 alias o='open . >& /dev/null' #Finder
 alias todo='node ~/dev/todo/bin/todo'

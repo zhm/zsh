@@ -15,6 +15,14 @@ function search() {
   find . -type f \( ! -path "*/.git/*" \) -exec grep -l "$1" {} \;
 }
 
+function gfind() {
+  git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %C(cyan)(%cr) %C(blue)<%an>%Creset" --abbrev-commit --date=relative -S"$1"
+}
+
+function gpfind() {
+  git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %C(cyan)(%cr) %C(blue)<%an>%Creset" --abbrev-commit --date=relative --patch -S"$1"
+}
+
 function searchf() {
   find . -type f -name "*$1*" \( ! -path "*/.git/*" \)
 }
@@ -171,6 +179,10 @@ function localruby {
 
 function createtags {
   ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.tags/$1 $2
+}
+
+function build-mapnik {
+  python scons/scons.py BOOST_INCLUDES=/usr/local/include BOOST_LIBS=/usr/local/lib PREFIX=$HOME/local ICU_INCLUDES=/usr/local/include ICU_LIBS=/usr/local/lib
 }
 
 
