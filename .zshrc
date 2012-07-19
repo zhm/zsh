@@ -18,6 +18,7 @@ plugins=(git ruby rails osx)
 source $ZSH/oh-my-zsh.sh
 source ~/.functions
 source ~/.aliases
+source-if-exists ~/.aws
 
 prepend-path "/usr/local/share/python"
 prepend-path "/usr/local/sbin"

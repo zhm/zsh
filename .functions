@@ -67,6 +67,16 @@ function gstats() {
   ; done
 }
 
+function mgdump() {
+  local output="$1"; shift
+  $MONGO_PATH/bin/mongodump -o "$output" $@
+}
+
+function mgrestore() {
+  local db="$1"; shift
+  $MONGO_PATH/bin/mongorestore --db "$db" $@
+}
+
 # Usage: atosym appname 0x000ac2d4
 function atosym() {
   atos -arch armv7 -o "$1.app"/"$1" $2
@@ -151,6 +161,12 @@ function prepend-path {
 function append-path {
   remove-path $1
   export PATH=$PATH:$1
+}
+
+function source-if-exists {
+  if [[ -s $1 ]] then
+    source $1
+  fi
 }
 
 # clean up the $PATH and remove the specified path
@@ -296,4 +312,22 @@ function ai-rs() {
 
 function pdbackup() {
   rm $@ && mplayer -msglevel all=-1 "/System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/finder/empty trash.aif"
+}
+
+function tdbs() {
+  #tmux -C new-session -s db
+  tmux -C new-session -d -s db
+  tmux -C new-window -k -t db
+  tmux -C new-window -k -t db
+  tmux -C new-window -k -t db
+  echo "database session started"
+}
+
+function latlong() {
+  $HOME/dev/whereami/build/Release/whereami
+}
+
+function addr() {
+  curl -s "http://maps.googleapis.com/maps/api/geocode/json?latlng=$($HOME/dev/whereami/build/Release/whereami)&sensor=false" |
+  ruby -e "require 'json'; puts JSON.parse(STDIN.read)['results'][0]['formatted_address']"
 }
