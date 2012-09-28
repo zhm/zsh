@@ -12,6 +12,7 @@ export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
 export JRUBY_HOME=$RY_PREFIX/lib/ry/current
 export JAVA_OPTS="-d32"
+export PHP_PATH=$HOME/local/src/PHP5
 
 plugins=(git ruby rails osx)
 
@@ -19,7 +20,9 @@ source $ZSH/oh-my-zsh.sh
 source ~/.functions
 source ~/.aliases
 source-if-exists ~/.aws
+source-if-exists ~/.private
 
+prepend-path "$ANDROID_SDK_PATH/platform-tools"
 prepend-path "/usr/local/share/python"
 prepend-path "/usr/local/sbin"
 prepend-path "/usr/local/bin"
@@ -35,3 +38,7 @@ export CLICOLOR=1
 # ctrl+n/p delete all-up-to and delete-all-after cursor
 bindkey "^N" backward-kill-line
 bindkey "^P" kill-line
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line

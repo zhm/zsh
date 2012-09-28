@@ -297,6 +297,10 @@ function getlayers() {
   ogrinfo $@ | tail +3 | sed 's/[0-9]*: //' | sed 's/ (.*//'
 }
 
+# function pj() {
+#   $HOME/local/geotools/bin/pj show -f $@
+# }
+
 function sayloud() {
   MAXVOLUME=7 && CURVOLUME=$(echo "($(osascript -e 'set curVolume to output volume of (get volume settings)') / 100.0) * $MAXVOLUME" | bc -l)
   osascript -e "set volume $MAXVOLUME" && say "$@" && osascript -e "set volume $CURVOLUME"
