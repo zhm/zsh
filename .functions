@@ -335,3 +335,11 @@ function addr() {
   curl -s "http://maps.googleapis.com/maps/api/geocode/json?latlng=$($HOME/dev/whereami/build/Release/whereami)&sensor=false" |
   ruby -e "require 'json'; puts JSON.parse(STDIN.read)['results'][0]['formatted_address']"
 }
+
+function pushpin() {
+  TAG="source" && VALUE="Pushpin\%20for\%20iOS" && curl -s "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28node%5B${TAG}%3D%27${VALUE}%27%5D%3B%29%3Bout%3B" | grep -E "lat|lon" | sed 's/"//g' | sed -E 's/lat: (.+),/\1|/' | sed 's/lon: //' | sed 's/  //' | xargs | tr ',' '\n' | tr '|' ',' | sed 's/ //g' | grep -Ev '^$'
+}
+
+function pushpinc() {
+  pushpin | wc -l
+}
