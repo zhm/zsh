@@ -65,6 +65,7 @@ alias rds='redis-cli'
 alias sqld='mysql.server start'
 alias sqlstop='mysql.server stop'
 alias jenkins='java -jar /usr/local/Cellar/jenkins/1.477/libexec/jenkins.war'
+alias nw='/Applications/node-webkit.app/Contents/MacOS/node-webkit'
 
 # utilities
 alias vhax='mvim ~/stuff/vimhax.txt'

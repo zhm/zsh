@@ -30,6 +30,7 @@ prepend-path "$HOME/local/bin"
 prepend-path "$HOME/local/geotools/bin"
 prepend-path "$RY_PREFIX/lib/ry/current/bin"
 append-path  "$HOME/android/android-sdk-macosx/tools"
+append-path  "$HOME/dev/sysadmin/bin"
 
 export HISTSIZE=100000000
 export SAVEHIST=100000000

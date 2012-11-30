@@ -194,7 +194,7 @@ function localruby {
 }
 
 function createtags {
-  ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.tags/$1 $2
+  ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=c++ -f ~/.tags/$1 $2
 }
 
 function build-mapnik {
@@ -338,6 +338,18 @@ function addr() {
 
 function pushpin() {
   TAG="source" && VALUE="Pushpin\%20for\%20iOS" && curl -s "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28node%5B${TAG}%3D%27${VALUE}%27%5D%3B%29%3Bout%3B" | grep -E "lat|lon" | sed 's/"//g' | sed -E 's/lat: (.+),/\1|/' | sed 's/lon: //' | sed 's/  //' | xargs | tr ',' '\n' | tr '|' ',' | sed 's/ //g' | grep -Ev '^$'
+}
+
+function kv() {
+  TAG="$1" && VALUE="$2" && curl -s "http://overpass.osm.rambler.ru/cgi/interpreter?data=%5Bout%3Ajson%5D%3B%28node%5B${TAG}%3D%27${VALUE}%27%5D%3B%29%3Bout%20100%3B" | python -mjson.tool
+}
+
+function kv1000() {
+  TAG="$1" && VALUE="$2" && curl -s "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28node%5B${TAG}%3D%27${VALUE}%27%5D%3B%29%3Bout%201000%3B" | python -mjson.tool
+}
+
+function kv1000raw() {
+  TAG="$1" && VALUE="$2" && curl -s "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28node%5B${TAG}%3D%27${VALUE}%27%5D%3B%29%3Bout%2010000%3B"
 }
 
 function pushpinc() {
