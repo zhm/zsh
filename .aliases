@@ -15,6 +15,7 @@ alias bi='bundle install'
 alias rs='bundle exec rails s'
 alias rc='bundle exec rails c'
 alias rt='bundle exec rake --tasks'
+alias bf='bundle exec foreman start'
 
 # git
 alias gp='git pull'
@@ -24,6 +25,7 @@ alias gc='git clone'
 alias gb='git branch -a'
 alias ga='git add --all'
 alias gr='git remote show origin'
+alias conflicts='git ls-files --unmerged | cut -f2 | sort -u'
 alias gditch='git reset --hard'
 alias gditchall='git reset --hard && git clean -fd'
 alias gdiff='git diff'
@@ -38,13 +40,16 @@ alias gup='git smart-pull'
 alias gup2='git pull --recurse-submodules && git submodule update'
 
 # quickies
+alias l='ls -al'
 alias b='brew'
 alias v='vagrant'
 alias j='jekyll'
 alias o='open . >& /dev/null' #Finder
 alias p='pbpaste'
 alias c='pbcopy'
+alias mm='mimosa'
 alias xcode="open *.xcodeproj"
+alias tk="mvim ~/stuff/tasks.txt"
 
 # directories
 alias stuff='cd ~/stuff'

@@ -7,11 +7,12 @@ export NODE_PATH=/usr/local/lib/node_modules
 export DROPBOX_PATH=$HOME/Dropbox
 export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
-export ANDROID_SDK_PATH=~/android/android-sdk-macosx
+export ANDROID_SDK_PATH=~/adt-bundle-mac/sdk
 export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
 export JRUBY_HOME=$RY_PREFIX/lib/ry/current
 export JAVA_OPTS="-d32"
+export JRUBY_OPTS=-J-Xss32768k
 export PHP_PATH=$HOME/local/src/PHP5
 
 plugins=(git ruby rails osx)
@@ -29,8 +30,9 @@ prepend-path "/usr/local/bin"
 prepend-path "$HOME/local/bin"
 prepend-path "$HOME/local/geotools/bin"
 prepend-path "$RY_PREFIX/lib/ry/current/bin"
-append-path  "$HOME/android/android-sdk-macosx/tools"
+append-path  "$ANDROID_SDK_PATH/tools"
 append-path  "$HOME/dev/sysadmin/bin"
+append-path  "/usr/local/share/npm/bin"
 
 export HISTSIZE=100000000
 export SAVEHIST=100000000
