@@ -45,3 +45,6 @@ bindkey "^P" kill-line
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
+
+# turn off the annoying auto-correction
+unsetopt correct_all

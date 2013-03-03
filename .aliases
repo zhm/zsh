@@ -107,6 +107,7 @@ alias httpdump='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET 
 
 # ruby helpers
 alias ryhead='ry install https://github.com/ruby/ruby/tarball/trunk trunk --enable-shared=yes'
+alias ry20='ry install https://github.com/ruby/ruby/archive/v2_0_0_0.tar.gz 2.0 --enable-shared=yes'
 alias ryrbx='ry install https://github.com/rubinius/rubinius/tarball/master rbx-trunk --enable-version=1.8,1.9 --default-version=1.9'
 alias ryjruby='ry install https://github.com/jruby/jruby/tarball/master jruby-trunk --enable-shared=yes'
 alias linkbundler='ln -s $RY_PREFIX/lib/ry/rubies/rbx-trunk/gems/1.9/bin/bundle $RY_PREFIX/lib/ry/current/bin/bundle'
