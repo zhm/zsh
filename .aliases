@@ -8,6 +8,7 @@ alias hh='history'
 alias h='history | tail -30'
 alias bb='cd $OLDPWD'
 alias back='cd $OLDPWD'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # bundler
 alias bx='bundle exec'
