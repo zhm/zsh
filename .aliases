@@ -44,7 +44,7 @@ alias gup2='git pull --recurse-submodules && git submodule update'
 alias l='ls -al'
 alias b='brew'
 alias v='vagrant'
-alias j='jekyll'
+alias j='jekyll serve --watch'
 alias o='open . >& /dev/null' #Finder
 alias p='pbpaste'
 alias c='pbcopy'
@@ -105,6 +105,7 @@ alias json='python -mjson.tool'
 alias cgi='ruby ~/local/src/cgi/cgi.rb'
 alias fsnoop='sudo opensnoop -ve'
 alias httpdump='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+alias mapfart='curl -H "Content-Type: application/octet-stream" --data-binary @- mapfart.com/api/fart'
 
 # ruby helpers
 alias ryhead='ry install https://github.com/ruby/ruby/tarball/trunk trunk --enable-shared=yes'
