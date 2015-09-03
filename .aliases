@@ -18,6 +18,8 @@ alias rc='bundle exec rails c'
 alias rt='bundle exec rake --tasks'
 alias bf='bundle exec foreman start'
 
+alias geojsonlint='echo "$@"; curl -XPOST -d `curl -s $@` http://geojsonlint.com/validate'
+
 # git
 alias gp='git pull'
 alias gpr='git pull --rebase'
@@ -39,12 +41,20 @@ alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %C(cyan)(%cr) %C(blue)<%an>%Creset" --abbrev-commit --date=relative'
 alias gup='git smart-pull'
 alias gup2='git pull --recurse-submodules && git submodule update'
+alias simdir='cd ~/Library/Developer/CoreSimulator && find . -iname "Fulcrum"'
+alias gunpushed='branch-status -a'
+alias gcmp='branch-status -avb master'
+alias gstale='branch-status -avb master | grep "ahead 0"'
+alias gactive='branch-status -avb master | grep -v "ahead 0"'
+alias gactivedev='branch-status -avb dev | grep -v "ahead 0"'
+alias gactivedevelopment='branch-status -avb development | grep -v "ahead 0"'
+alias gactiveedge='branch-status -avb edge | grep -v "ahead 0"'
 
 # quickies
 alias l='ls -al'
 alias b='brew'
 alias v='vagrant'
-alias j='jekyll serve --watch'
+alias j='jekyll serve --watch --drafts'
 alias o='open . >& /dev/null' #Finder
 alias p='pbpaste'
 alias c='pbcopy'
@@ -72,8 +82,10 @@ alias sqld='mysql.server start'
 alias sqlstop='mysql.server stop'
 alias jenkins='java -jar /usr/local/Cellar/jenkins/1.477/libexec/jenkins.war'
 alias nw='/Applications/node-webkit.app/Contents/MacOS/node-webkit'
+alias josm='java -Xmx512M -Xdock:name="JOSM" -Xdock:icon="logo.png" -jar /Applications/JOSM.app/Contents/Java/josm-snapshot-*.jar'
 
 # utilities
+alias wordnet='/usr/local/Cellar/wordnet/3.1/bin/wn'
 alias vhax='mvim ~/stuff/vimhax.txt'
 alias ql='qlmanage -p "$@" >& /dev/null' #quick look a file
 alias tree='tree -C' #color output
@@ -83,8 +95,10 @@ alias tarf='tar --exclude "$(basename $(pwd)).tar.gz" -czf "$(basename $(pwd)).t
 alias lss='ls -lA'
 alias ls='ls -lA'
 alias k9='killall -9'
-alias todo='node ~/dev/todo/bin/todo'
 alias adb='$ANDROID_SDK_PATH/platform-tools/adb'
+alias todo='todotxt'
+alias t='todotxt'
+alias te='mvim /Users/zacmcc/Dropbox/todo/todo.txt'
 alias dsize='du -sh | awk "{print \$1}"'
 alias fsize='du | sort -nr | cut -f2- | xargs du -hsc' #sorted by size
 alias grepn='grep -C 3' # show 3 surrounding lines

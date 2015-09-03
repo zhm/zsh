@@ -39,6 +39,14 @@ function his() {
   history | ack $@
 }
 
+function runjosm() {
+  ~/dev/josm2/core && java -cp .:build org.openstreetmap.josm.gui.MainApplication
+}
+
+function findrailsfilesforwhitespace() {
+  mvim `find . \( -iname "*.rb" -or -iname "*.haml" -or -iname "*.js.*" -or -iname "*.css*" \) \( -path "./app/*" -or -path "./lib/*" -or -path "./spec/*" -or -path "./config/*" -or -path "./db/*" \)`
+}
+
 function tab2csv() {
   tr '\t' ',' < $1 > $2
 }
@@ -137,10 +145,10 @@ function zipr() {
   zip -r $1.zip $1
 }
 
-function serve {
-  port="${1:-3000}"
-  ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
-}
+# function serve {
+#   port="${1:-3000}"
+#   ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+# }
 
 function unlocal {
   username=`whoami`
@@ -209,7 +217,7 @@ function tospatialite() {
   ogr2ogr -f SQLite `remove-ext $1`.sqlite $1 -dsco SPATIALITE=YES
 }
 
-function togeojson() {
+function togeojsonold() {
   ogr2ogr -f GeoJSON `remove-ext $1`.json $1
 }
 
@@ -354,4 +362,31 @@ function kv1000raw() {
 
 function pushpinc() {
   pushpin | wc -l
+}
+
+# find the stupid location of the iOS app within the simulator directories
+function sim() {
+  for i in ~/Library/Developer/CoreSimulator/Devices/* ; do
+    device_name=$(cat "$i/device.plist" | grep -C1 '<key>name</key>' | tail -1)
+    device_name=$(echo $device_name | sed 's/\<string\>//')
+    device_name=$(echo $device_name | sed 's/\<\/string\>//')
+    device_name=$(echo $device_name | sed 's/	//')
+    echo $device_name
+
+    if test -n "$(find $i -name Fulcrum -print -quit)"
+    then
+      for fulcrum in $i/data/**/Fulcrum ; do
+        echo $fulcrum
+      done
+    fi
+
+    if test -n "$(find $i -name fulcrumapp.sqlite -print -quit)"
+    then
+      for fulcrum in $i/data/**/fulcrumapp.sqlite ; do
+        echo $(dirname $fulcrum)
+      done
+    fi
+
+    echo "---------------------"
+  done
 }
