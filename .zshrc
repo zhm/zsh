@@ -3,17 +3,26 @@ ZSH_THEME="zacmcc"
 
 export EDITOR='mvim -f'
 export GIT_EDITOR='mvim -f'
-export NODE_PATH=/usr/local/lib/node_modules
+# export NODE_PATH=/usr/local/lib/node_modules
 export DROPBOX_PATH=$HOME/Dropbox
 export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
-export ANDROID_SDK_PATH=~/adt-bundle-mac/sdk
+export ANDROID_SDK_PATH=/usr/local/opt/android-sdk
+export ANDROID_HOME=/usr/local/opt/android-sdk
 export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
-export JRUBY_HOME=$RY_PREFIX/lib/ry/current
-export JAVA_OPTS="-d32"
-export JRUBY_OPTS=-J-Xss32768k
+# export JRUBY_HOME=$RY_PREFIX/lib/ry/current
+# export JAVA_OPTS="-d32"
+# export JRUBY_OPTS=-J-Xss32768k
 export PHP_PATH=$HOME/local/src/PHP5
+export GOPATH=$HOME/go
+export OCLINT_HOME=$HOME/local/oclint
+
+export FULCRUM_WEB=$HOME/dev/fulcrum_app2
+export FULCRUM_IOS=$HOME/dev/fulcrum_ios
+export FULCRUM_ANDROID=$HOME/dev/fulcrum_android
+export FULCRUM_SITE=$HOME/dev/fulcrumapp.com
+export FULCRUM_TILES=$HOME/dev/fulcrum_tiles
 
 plugins=(git ruby rails osx)
 
@@ -29,9 +38,12 @@ prepend-path "/usr/local/sbin"
 prepend-path "/usr/local/bin"
 prepend-path "$HOME/local/bin"
 prepend-path "$HOME/local/geotools/bin"
-prepend-path "$RY_PREFIX/lib/ry/current/bin"
+prepend-path "$HOME/dev/GeoGit/src/cli-app/target/geogit/bin"
+# prepend-path "$RY_PREFIX/lib/ry/current/bin"
+prepend-path "$HOME/local/oclint/bin"
 append-path  "$ANDROID_SDK_PATH/tools"
 append-path  "$HOME/dev/sysadmin/bin"
+append-path  "$GOPATH/bin"
 append-path  "/usr/local/share/npm/bin"
 
 export HISTSIZE=100000000
