@@ -8,7 +8,7 @@ export DEV_PATH=$DROPBOX_PATH/dev
 export MONGO_PATH=$DROPBOX_PATH/dev/mongodb-osx-x86_64-2.0.2
 export ANDROID_SDK_PATH=/usr/local/opt/android-sdk
 export ANDROID_HOME=/usr/local/opt/android-sdk
-export CLASSPATH=$HOME/local/jar
+# export CLASSPATH=$HOME/local/jar
 export RY_PREFIX=$HOME/local
 export PHP_PATH=$HOME/local/src/PHP5
 export GOPATH=$HOME/go
@@ -18,6 +18,7 @@ export FULCRUM_WEB=$HOME/dev/fulcrum_app2
 export FULCRUM_IOS=$HOME/dev/fulcrum_ios
 export FULCRUM_ANDROID=$HOME/dev/fulcrum_android
 export FULCRUM_SITE=$HOME/dev/fulcrumapp.com
+export FULCRUM_DEV_SITE=$HOME/dev/developer.fulcrumapp.com
 export FULCRUM_TILES=$HOME/dev/fulcrum_tiles
 
 plugins=(git ruby rails osx)
