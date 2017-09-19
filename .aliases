@@ -55,6 +55,7 @@ alias gactivedevelopment='branch-status -avb development | grep -v "ahead 0"'
 alias gactiveedge='branch-status -avb edge | grep -v "ahead 0"'
 
 # quickies
+alias ironyard='echo $RANDOM'
 alias l='ls -al'
 alias b='brew'
 alias v='vagrant'
