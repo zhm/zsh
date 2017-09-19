@@ -9,6 +9,7 @@ alias h='history | tail -30'
 alias bb='cd $OLDPWD'
 alias back='cd $OLDPWD'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias sshfix='ssh-add -A'
 
 # bundler
 alias bx='bundle exec'
@@ -20,6 +21,8 @@ alias bf='bundle exec foreman start'
 
 alias geojsonlint='echo "$@"; curl -XPOST -d `curl -s $@` http://geojsonlint.com/validate'
 
+alias npmcorp="npm --userconfig=~/.fulcrumapp-npmrc"
+
 # git
 alias gp='git pull'
 alias gpr='git pull --rebase'
@@ -28,6 +31,7 @@ alias gc='git clone'
 alias gb='git branch -a'
 alias ga='git add --all'
 alias gr='git remote show origin'
+alias yb='yarn build'
 alias conflicts='git ls-files --unmerged | cut -f2 | sort -u'
 alias gditch='git reset --hard'
 alias gditchall='git reset --hard && git clean -fd'
